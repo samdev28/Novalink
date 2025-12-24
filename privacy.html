@@ -1,0 +1,744 @@
+<!-- 
+  ============================================
+  NOVALINK - PRIVACY POLICY PAGE
+  ============================================
+  
+  This is the privacy policy page - it tells users how we collect
+  and protect their personal information (like their email, name, etc).
+  
+  Think of it like a promise to users: "Here's how we use your data,
+  and here's how we keep it safe."
+  
+  This page is styled to match the main NovaLink website so it looks
+  professional and consistent with the rest of our site.
+-->
+
+<!DOCTYPE html>
+<!-- DOCTYPE tells the browser this is an HTML5 document -->
+<html lang="en">
+<!-- Start of HTML document, "en" means this page is in English -->
+
+<head>
+    <!-- The <head> section contains info about the page but doesn't show on screen -->
+    
+    <!-- Tell browser to use UTF-8 characters (supports all languages) -->
+    <meta charset="UTF-8">
+    
+    <!-- Make website responsive on mobile phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- This is the title that appears in the browser tab -->
+    <title>Privacy Policy - NovaLink</title>
+    
+    <!-- Import beautiful fonts from Google (Inter and Space Grotesk) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Start of CSS styling (makes the page look pretty) -->
+    <style>
+        /* ===== COLOR VARIABLES =====
+           These are like paint colors we use throughout the page.
+           If we want to change a color, we only change it in one place
+           and it updates everywhere!
+        */
+        :root {
+            /* Pure black - our main brand color */
+            --primary: #000000;
+            
+            /* Dark gray - used for hover effects */
+            --primary-dark: #1a1a1a;
+            
+            /* Light gray - used for accents and highlights */
+            --primary-light: #333333;
+            
+            /* Medium gray - a complementary color */
+            --secondary: #555555;
+            
+            /* Light gray - lighter version */
+            --secondary-light: #888888;
+            
+            /* Dark gray - used for emphasis */
+            --accent: #222222;
+            
+            /* Off-white - main background color */
+            --bg-dark: #ffffff;
+            
+            /* Very light gray - background for sections */
+            --bg-darker: #f8f8f8;
+            
+            /* Light gray - background for cards/boxes */
+            --bg-card: #f5f5f5;
+            
+            /* Pure black - text color */
+            --text-primary: #000000;
+            
+            /* Dark gray - less important text */
+            --text-secondary: #333333;
+            
+            /* Medium gray - barely visible text */
+            --text-tertiary: #666666;
+            
+            /* Light gray - color for borders/lines */
+            --border: #dddddd;
+            
+            /* Slightly lighter gray for borders */
+            --space-xs: 4px;      /* Extra small space (tiny gap) */
+            --space-sm: 8px;      /* Small space */
+            --space-md: 16px;     /* Medium space (default) */
+            --space-lg: 24px;     /* Large space */
+            --space-xl: 32px;     /* Extra large space */
+            --space-2xl: 48px;    /* 2x large space */
+            --space-3xl: 64px;    /* 3x large space */
+            
+            /* Font families - the types of fonts we use */
+            --font-sans: 'Inter', sans-serif;           /* Regular text font */
+            --font-display: 'Space Grotesk', sans-serif; /* Heading font (fancier) */
+            
+            /* Max width - the page won't be wider than this */
+            --max-width: 1280px;
+            
+            /* Border radius - how rounded corners are */
+            --radius: 12px;         /* Slightly rounded */
+            --radius-lg: 20px;      /* Very rounded */
+            --radius-full: 9999px;  /* Completely rounded (pills/circles) */
+            
+            /* Transition - how smooth animations are */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== RESET ALL DEFAULT STYLES =====
+           Browsers have default styles. We remove them to start fresh.
+        */
+        * {
+            /* Remove default margins (space outside elements) */
+            margin: 0;
+            /* Remove default padding (space inside elements) */
+            padding: 0;
+            /* Make width/height include padding and borders */
+            box-sizing: border-box;
+        }
+
+        /* ===== HTML PAGE SETTINGS ===== */
+        html {
+            /* When clicking a link, scroll smoothly instead of jumping */
+            scroll-behavior: smooth;
+        }
+
+        /* ===== BODY STYLING =====
+           The body is everything visible on the page
+        */
+        body {
+            /* Use the Inter font for all text */
+            font-family: var(--font-sans);
+            
+            /* Create a gradient background (white to light gray) */
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            
+            /* Make text dark colored (for light background) */
+            color: var(--text-primary);
+            
+            /* Space between lines of text (readability) */
+            line-height: 1.6;
+            
+            /* Prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+
+        /* ===== CONTAINER CLASS =====
+           Centers content and adds max width (makes layout not too wide)
+        */
+        .container {
+            /* Maximum width of 1280px */
+            max-width: var(--max-width);
+            /* Center the container */
+            margin: 0 auto;
+            /* Add padding on sides on mobile */
+            padding: 0 var(--space-md);
+        }
+
+        /* ===== HEADER STYLING =====
+           The top bar with logo and navigation
+        */
+        header {
+            /* Sticky = stays at top when scrolling */
+            position: sticky;
+            top: 0;
+            /* Layer 100 = appear above everything */
+            z-index: 100;
+            /* Semi-transparent white background */
+            background: rgba(255, 255, 255, 0.9);
+            /* Blur effect behind header (modern look) */
+            backdrop-filter: blur(10px);
+            /* Add a thin line at the bottom */
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ===== HEADER INNER =====
+           The content inside the header (logo + navigation)
+        */
+        .header-inner {
+            /* Side-by-side layout */
+            display: flex;
+            /* Vertically center items */
+            align-items: center;
+            /* Space items apart */
+            justify-content: space-between;
+            /* Max width constraint */
+            max-width: var(--max-width);
+            /* Center horizontally */
+            margin: 0 auto;
+            /* Add padding inside */
+            padding: var(--space-lg) var(--space-md);
+            /* Take full width */
+            width: 100%;
+        }
+
+        /* ===== LOGO STYLING =====
+           The NovaLink logo with icon
+        */
+        .logo {
+            /* Side-by-side layout for icon + text */
+            display: flex;
+            /* Vertically center */
+            align-items: center;
+            /* Space between icon and text */
+            gap: var(--space-sm);
+            /* Remove underline from link */
+            text-decoration: none;
+            /* Light text color */
+            color: var(--text-primary);
+            /* Bold text */
+            font-weight: 700;
+            /* Large text size */
+            font-size: 1.3rem;
+            /* Use fancy display font */
+            font-family: var(--font-display);
+            /* Smooth color change on hover */
+            transition: var(--transition);
+        }
+
+        /* Change color when hovering over logo */
+        .logo:hover {
+            color: var(--primary);
+        }
+
+        /* ===== LOGO ICON =====
+           The small square image/icon before "NovaLink" text
+        */
+        .logo-icon {
+            /* Small square */
+            width: 40px;
+            height: 40px;
+            /* Slightly rounded corners */
+            border-radius: var(--radius);
+            /* Center the image inside */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Don't let image spill outside */
+            overflow: hidden;
+        }
+
+        /* The actual image inside the icon */
+        .logo-icon img {
+            /* Fill the entire container */
+            width: 100%;
+            height: 100%;
+            /* Keep image proportions (don't stretch) */
+            object-fit: contain;
+        }
+
+        /* ===== NAVIGATION MENU =====
+           The links at the top (Features, How It Works, Get Started)
+        */
+        nav ul {
+            /* Side-by-side layout */
+            display: flex;
+            /* Remove bullet points */
+            list-style: none;
+            /* Space between menu items */
+            gap: var(--space-2xl);
+        }
+
+        /* ===== NAVIGATION LINKS ===== */
+        nav a {
+            /* Muted light color */
+            color: var(--text-secondary);
+            /* Remove underline */
+            text-decoration: none;
+            /* Normal text size */
+            font-size: 0.95rem;
+            /* Smooth transitions */
+            transition: var(--transition);
+            /* For underline animation */
+            position: relative;
+            /* Padding around text */
+            padding: var(--space-sm) 0;
+            /* Small space between letters */
+            letter-spacing: 0.3px;
+        }
+
+        /* Create underline on hover (animated) */
+        nav a::after {
+            /* Create the underline */
+            content: '';
+            /* Position under the text */
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            /* Start invisible */
+            width: 0;
+            /* 2px thick line */
+            height: 2px;
+            /* Blue color */
+            background: var(--primary);
+            /* Smooth animation */
+            transition: width 0.3s ease;
+        }
+
+        /* Make text lighter on hover */
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Animate the underline to full width on hover */
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== MAIN CONTENT =====
+           The page content area
+        */
+        main {
+            /* At least full viewport height minus header/footer */
+            min-height: calc(100vh - 200px);
+            /* Add padding */
+            padding: var(--space-3xl) var(--space-md);
+        }
+
+        /* ===== PAGE HEADER =====
+           The "Privacy Policy" heading at the top
+        */
+        .page-header {
+            /* Center text */
+            text-align: center;
+            /* Space below */
+            margin-bottom: var(--space-3xl);
+        }
+
+        /* The main heading */
+        .page-header h1 {
+            /* Use fancy display font */
+            font-family: var(--font-display);
+            /* Responsive size (bigger on larger screens) */
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            /* Bold text */
+            font-weight: 700;
+            /* Space below heading */
+            margin-bottom: var(--space-md);
+            /* Gradient text (blue to teal) */
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            /* Make text transparent so gradient shows through */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* The subtitle under the heading */
+        .page-header p {
+            /* Normal text size but bigger */
+            font-size: 1.1rem;
+            /* Muted color */
+            color: var(--text-secondary);
+            /* Don't make too wide */
+            max-width: 600px;
+            /* Center it */
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT SECTION =====
+           Each section of content (Our Story, Mission, etc)
+        */
+        .content-section {
+            /* Max width so text isn't too wide to read */
+            max-width: 800px;
+            /* Center on page */
+            margin: 0 auto var(--space-2xl);
+            /* Dark background */
+            background: var(--bg-card);
+            /* Subtle border */
+            border: 1px solid var(--border);
+            /* Rounded corners */
+            border-radius: var(--radius-lg);
+            /* Inner padding */
+            padding: var(--space-2xl);
+        }
+
+        /* Section heading (Privacy Policy, Our Story, etc) */
+        .content-section h2 {
+            /* Use display font */
+            font-family: var(--font-display);
+            /* Large heading */
+            font-size: 1.5rem;
+            /* Space below */
+            margin-bottom: var(--space-lg);
+            /* Blue color */
+            color: var(--primary);
+        }
+
+        /* Subheading inside section */
+        .content-section h3 {
+            /* Regular size */
+            font-size: 1.1rem;
+            /* Add space above */
+            margin-top: var(--space-lg);
+            /* Add space below */
+            margin-bottom: var(--space-sm);
+            /* Light color */
+            color: var(--text-primary);
+        }
+
+        /* Paragraphs (regular text) */
+        .content-section p {
+            /* Muted color */
+            color: var(--text-secondary);
+            /* Space after each paragraph */
+            margin-bottom: var(--space-md);
+            /* Space between lines (readable) */
+            line-height: 1.8;
+        }
+
+        /* Lists (bullet points) */
+        .content-section ul {
+            /* Remove bullet points */
+            list-style: none;
+            /* No padding on left */
+            padding-left: 0;
+        }
+
+        /* List items */
+        .content-section li {
+            /* Muted color */
+            color: var(--text-secondary);
+            /* Space after each item */
+            margin-bottom: var(--space-sm);
+            /* Add space on left for bullet */
+            padding-left: var(--space-lg);
+            /* For custom bullet positioning */
+            position: relative;
+        }
+
+        /* Custom bullet point (arrow instead of dot) */
+        .content-section li::before {
+            /* Show an arrow */
+            content: '•';
+            /* Position on the left */
+            position: absolute;
+            left: 0;
+            /* Blue color */
+            color: var(--primary);
+            /* Bold bullet */
+            font-weight: 700;
+        }
+
+        /* ===== FOOTER =====
+           The bottom section with links and copyright
+        */
+        footer {
+            /* Dark background */
+            background: var(--bg-darker);
+            /* Line at top */
+            border-top: 1px solid var(--border);
+            /* Padding inside */
+            padding: var(--space-2xl) var(--space-md);
+            /* Center text */
+            text-align: center;
+        }
+
+        /* Footer links container */
+        .footer-links {
+            /* Side-by-side layout */
+            display: flex;
+            /* Center horizontally */
+            justify-content: center;
+            /* Space between links */
+            gap: var(--space-lg);
+            /* Space below */
+            margin-bottom: var(--space-lg);
+            /* Allow wrapping on mobile */
+            flex-wrap: wrap;
+        }
+
+        /* Each footer link */
+        .footer-links a {
+            /* Muted color */
+            color: var(--text-secondary);
+            /* Remove underline */
+            text-decoration: none;
+            /* Smooth color change */
+            transition: var(--transition);
+        }
+
+        /* Change color on hover */
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Copyright text */
+        .footer-bottom {
+            /* Very muted color */
+            color: var(--text-tertiary);
+            /* Small text size */
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN (TABLETS) =====
+           These changes apply when screen is 768px or smaller
+        */
+        @media (max-width: 768px) {
+            /* Less padding in header on tablets */
+            .header-inner {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            /* Smaller gaps between nav items */
+            nav ul {
+                gap: var(--space-xl);
+            }
+
+            /* Less padding in main content */
+            main {
+                padding: var(--space-2xl) var(--space-md);
+            }
+
+            /* Less padding in content boxes */
+            .content-section {
+                padding: var(--space-lg);
+            }
+
+            /* Smaller heading on tablets */
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== RESPONSIVE DESIGN (MOBILE) =====
+           These changes apply when screen is 480px or smaller (phones)
+        */
+        @media (max-width: 480px) {
+            /* Smaller header padding on phones */
+            .header-inner {
+                padding: var(--space-md) var(--space-md);
+            }
+
+            /* Make logo smaller */
+            .logo {
+                gap: var(--space-xs);
+                font-size: 1rem;
+            }
+
+            /* Make logo icon smaller */
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            /* Smaller gaps in navigation */
+            nav ul {
+                gap: var(--space-sm);
+            }
+
+            /* Smaller nav link text */
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            /* Less padding in main content */
+            main {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            /* Less padding in content boxes */
+            .content-section {
+                padding: var(--space-md);
+            }
+
+            /* Very small heading on phones */
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== HEADER / TOP NAVIGATION ===== -->
+    <!-- This is the sticky bar that stays at the top when scrolling -->
+    <header class="container">
+        <!-- Inner wrapper for header content -->
+        <div class="header-inner">
+            <!-- Logo that links back to home page -->
+            <a href="Nova.html" class="logo">
+                <!-- Logo icon (the image) -->
+                <div class="logo-icon">
+                    <!-- The actual logo image file -->
+                    <img src="Minimalist circular .png" alt="NovaLink Logo">
+                </div>
+                <!-- Text "NovaLink" next to logo -->
+                <span>NovaLink</span>
+            </a>
+
+            <!-- Navigation menu -->
+            <nav>
+                <!-- List of navigation links -->
+                <ul>
+                    <!-- Link to Features section on home page -->
+                    <li><a href="Nova.html#features">Features</a></li>
+                    <!-- Link to How It Works section on home page -->
+                    <li><a href="Nova.html#how-it-works">How It Works</a></li>
+                    <!-- Link to signup page -->
+                    <li><a href="signup.html">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <!-- This is the page content (everything between header and footer) -->
+    <main class="container">
+        <!-- Page header (Privacy Policy title) -->
+        <div class="page-header">
+            <!-- Big heading -->
+            <h1>Privacy Policy</h1>
+            <!-- Subtitle with last update date -->
+            <p>Last updated: November 28, 2025</p>
+        </div>
+
+        <!-- Start of content section -->
+        <div class="content-section">
+            <!-- Main title -->
+            <h2>Privacy Policy</h2>
+            
+            <!-- Introduction section -->
+            <h3>Introduction</h3>
+            <!-- Explain what this policy is about -->
+            <p>At NovaLink ("we," "us," or "our"), we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and services.</p>
+
+            <!-- Information we collect section -->
+            <h3>Information We Collect</h3>
+            <!-- Intro to what data we collect -->
+            <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
+            <!-- List of types of data we collect -->
+            <ul>
+                <!-- Personal info like name, email -->
+                <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, shipping address, email address, and telephone number, and demographic information, such as your age, gender, hometown, and interests, that you voluntarily give to us when you register with the Site or when you choose to participate in various activities related to the Site.</li>
+                <!-- Payment info like credit card -->
+                <li><strong>Financial Data:</strong> Financial information, such as data related to your payment method (e.g., valid credit card number, card brand, expiration date) that we may collect when you purchase, order, return, exchange, or request information about our services from the Site.</li>
+                <!-- Data from other companies/services -->
+                <li><strong>Data From Third Parties:</strong> Third-party data we receive about you.</li>
+                <!-- Phone/device info -->
+                <li><strong>Mobile Device Data:</strong> Device information, such as your mobile device ID, model, and manufacturer, and information about the location of your device.</li>
+                <!-- What you look at and click on -->
+                <li><strong>Online Activity Data:</strong> Information about your browsing history, search history, and interactions with our Site.</li>
+            </ul>
+
+            <!-- How we use data section -->
+            <h3>Use of Your Information</h3>
+            <!-- Explain why we collect data -->
+            <p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Site to:</p>
+            <!-- List of how we use data -->
+            <ul>
+                <li>Create and manage your account</li>
+                <li>Process your transactions and send related information</li>
+                <li>Email you regarding your account or subscription</li>
+                <li>Fulfill and manage purchases, orders, payments, and other transactions related to the Site</li>
+                <li>Generate a personal profile about you so that future visits to the Site will be personalized</li>
+                <li>Increase the efficiency and operation of the Site</li>
+                <li>Monitor and analyze usage and trends to improve your experience with the Site</li>
+                <li>Notify you of updates to the Site</li>
+            </ul>
+
+            <!-- Who we share data with section -->
+            <h3>Disclosure of Your Information</h3>
+            <!-- Explain we might share data -->
+            <p>We may share information we have collected about you in certain situations:</p>
+            <!-- List reasons for sharing -->
+            <ul>
+                <!-- Share if law requires it -->
+                <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information is necessary to comply with the law.</li>
+                <!-- Share with companies who help us -->
+                <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf.</li>
+                <!-- Share if company is sold -->
+                <li><strong>Business Transfers:</strong> Your information may be transferred as part of a merger, acquisition, or sale of assets.</li>
+            </ul>
+
+            <!-- How we protect data section -->
+            <h3>Security of Your Information</h3>
+            <!-- Explain we try to keep data safe -->
+            <p>We use administrative, technical, and physical security measures to protect your personal information. However, perfect security cannot be guaranteed, and we cannot ensure or warrant the security of any information you transmit to us.</p>
+
+            <!-- Contact section -->
+            <h3>Contact Us</h3>
+            <!-- Say how to contact us with questions -->
+            <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
+            <!-- Email address -->
+            <p>Email: privacy@novalink.com</p>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <!-- The bottom section with links and copyright -->
+    <footer class="container">
+        <!-- Links to other pages -->
+        <div class="footer-links">
+            <!-- Link to About page -->
+            <a href="about.html">About</a>
+            <!-- Link to Privacy page (this page) -->
+            <a href="privacy.html">Privacy</a>
+            <!-- Link to Terms page -->
+            <a href="terms.html">Terms</a>
+            <!-- Link to Contact page -->
+            <a href="contact.html">Contact</a>
+            <!-- Link to Support page -->
+            <a href="support.html">Support</a>
+        </div>
+
+        <!-- Copyright text -->
+        <div class="footer-bottom">
+            <!-- Copyright year and company info -->
+            <p>&copy; <span id="year"></span> NovaLink. All rights reserved. Built for creators, by creators.</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <!-- JavaScript makes the page interactive -->
+    <script>
+        /* ===== SET THE CURRENT YEAR IN FOOTER =====
+           This automatically updates the copyright year.
+           Example: If it's 2025, it shows "2025 NovaLink"
+           You don't have to manually change it every year!
+        */
+        
+        /* Find the element with id="year" */
+        document.getElementById('year')
+        /* Get the current year from the computer's clock */
+        .textContent = new Date().getFullYear();
+
+        /* ===== PAGE LOAD ANIMATION =====
+           When the page first loads, fade it in smoothly
+        */
+        
+        /* Make body invisible at first */
+        document.body.style.opacity = '0';
+        
+        /* When page is fully loaded */
+        window.addEventListener('load', function() {
+            /* Add a smooth transition effect */
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            /* Fade in the page */
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
+<!-- END OF PRIVACY POLICY PAGE -->
+<!-- Everything above is explained line by line for beginners! -->

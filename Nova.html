@@ -1,0 +1,959 @@
+<!-- 
+  ============================================
+  NOVALINK - Collaborative Project Platform
+  ============================================
+  
+  A modern website for friends, students, and creators to build projects together.
+  Features: Idea Hub, Project Boards, Showcase Space, Community Threads.
+  
+  Design Philosophy:
+  - Sleek, modern, futuristic aesthetic
+  - Emphasizes innovation, teamwork, and digital freedom
+  - Interactive, engaging UI with smooth animations
+  - Fully responsive for mobile, tablet, and desktop
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text rendering -->
+    <meta charset="UTF-8">
+    
+    <!-- Viewport meta tag for responsive design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title shown in browser tab -->
+    <title>NovaLink - Build Together, Launch Together</title>
+    
+    <!-- Import modern fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS styling -->
+    <style>
+        /* ===== CSS VARIABLES (Design Tokens) =====
+           These variables define the color scheme, spacing, and typography.
+           Changing these values updates the entire site's appearance.
+        */
+        :root {
+            /* ===== COLOR PALETTE (Matched to NovaLink Logo) =====
+               These colors are designed to match your minimalist circular logo.
+               Adjust these values to match your exact logo colors if needed.
+            */
+            --primary: #000000;              /* Pure black (main brand color) */
+            --primary-dark: #1a1a1a;         /* Dark gray for hover states */
+            --primary-light: #333333;        /* Light gray for accents */
+            --secondary: #555555;            /* Medium gray (complements black) */
+            --secondary-light: #888888;      /* Light gray */
+            --accent: #222222;               /* Dark gray for emphasis */
+            --accent-light: #444444;         /* Medium-dark gray */
+            
+            /* ===== NEUTRALS (Light theme background) ===== */
+            --bg-dark: #ffffff;              /* Pure white (main background) */
+            --bg-darker: #f8f8f8;            /* Light gray (section backgrounds) */
+            --bg-card: #f5f5f5;              /* Lighter gray (card background) */
+            --text-primary: #000000;         /* Black text color */
+            --text-secondary: #333333;       /* Dark gray text */
+            --text-tertiary: #666666;        /* Medium gray text */
+            --border: #dddddd;               /* Light gray border color */
+            --border-light: #e5e5e5;         /* Even lighter border */
+            
+            /* ===== SPACING ===== */
+            --space-xs: 4px;                 /* Extra small spacing */
+            --space-sm: 8px;                 /* Small spacing */
+            --space-md: 16px;                /* Medium spacing (default) */
+            --space-lg: 24px;                /* Large spacing */
+            --space-xl: 32px;                /* Extra large spacing */
+            --space-2xl: 48px;               /* 2x large spacing */
+            --space-3xl: 64px;               /* 3x large spacing */
+            
+            /* ===== TYPOGRAPHY ===== */
+            --font-sans: 'Inter', sans-serif;              /* Main font */
+            --font-display: 'Space Grotesk', sans-serif;   /* Display/heading font */
+            
+            /* ===== SIZING ===== */
+            --max-width: 1280px;             /* Maximum content width */
+            --radius: 12px;                  /* Default border radius */
+            --radius-lg: 20px;               /* Large border radius */
+            --radius-full: 9999px;           /* Fully rounded (pills) */
+            
+            /* ===== SHADOWS ===== */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+            --shadow-xl: 0 12px 40px rgba(0,0,0,0.6);
+            
+            /* ===== TRANSITIONS ===== */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== UNIVERSAL STYLES ===== */
+        * {
+            margin: 0;                  /* Remove default margins */
+            padding: 0;                 /* Remove default padding */
+            box-sizing: border-box;     /* Include padding in width/height */
+        }
+
+        /* ===== HTML & BODY ===== */
+        html {
+            scroll-behavior: smooth;    /* Smooth scrolling when clicking anchor links */
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;         /* Prevent horizontal scroll */
+        }
+
+        /* ===== CONTAINER CLASS ===== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            position: sticky;           /* Stays at top when scrolling */
+            top: 0;
+            z-index: 100;               /* Above all other elements */
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+            backdrop-filter: blur(10px); /* Blur effect behind header */
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;              /* Horizontal layout */
+            align-items: center;        /* Vertically center items */
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+        }
+
+        .logo {
+            display: flex;              /* Flex for logo + text */
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+            font-family: var(--font-display);
+        }
+
+        .logo-icon {
+            width: 40px;                /* Logo image size */
+            height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;           /* Ensure image doesn't overflow */
+        }
+
+        /* Logo image inside the icon container */
+        .logo-icon img {
+            width: 100%;                /* Fill the container */
+            height: 100%;
+            object-fit: contain;        /* Keep aspect ratio */
+        }
+
+        /* Navigation menu */
+        nav ul {
+            display: flex;              /* Horizontal menu */
+            list-style: none;
+            gap: var(--space-lg);
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        /* Underline animation on hover */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;                   /* Start invisible */
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;                /* Animate width on hover */
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: var(--space-3xl) var(--space-md);
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative gradient orb in background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero-content {
+            position: relative;         /* Above the decorative ::before */
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;      /* Clip background to text */
+            -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xl);
+            line-height: 1.8;
+        }
+
+        /* CTA button styling */
+        .btn {
+            display: inline-block;      /* Sit inline but have block properties */
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);        /* Lift up on hover */
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-buttons {
+            display: flex;              /* Side-by-side buttons */
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: var(--space-3xl) var(--space-md);
+            background: var(--bg-darker);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .section-title h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: var(--space-md);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Feature cards grid */
+        .features-grid {
+            display: grid;              /* CSS Grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover effect: lift and glow */
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Icon container */
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ===== HOW IT WORKS SECTION ===== */
+        .how-it-works {
+            padding: var(--space-3xl) var(--space-md);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+        }
+
+        /* Steps grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            padding: var(--space-lg);
+        }
+
+        /* Step number circle */
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;           /* Perfect circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto var(--space-md);
+        }
+
+        .step h3 {
+            margin-bottom: var(--space-sm);
+        }
+
+        .step p {
+            color: var(--text-secondary);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: var(--space-3xl) var(--space-md);
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-lg);
+            margin: var(--space-2xl) var(--space-md);
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+            color: white;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-darker);
+            border-top: 1px solid var(--border);
+            padding: var(--space-2xl) var(--space-md);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;              /* Horizontal layout */
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        
+        /* Tablets: 768px and down */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: var(--space-md);
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: var(--space-2xl) var(--space-md);
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                gap: var(--space-sm);
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Mobile: 480px and down */
+        @media (max-width: 480px) {
+            .header-inner {
+                padding: var(--space-sm) 0;
+            }
+
+            .logo {
+                gap: var(--space-xs);
+                font-size: 1rem;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: var(--space-sm);
+                font-size: 0.8rem;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: var(--space-2xl) var(--space-md);
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;     /* Stack buttons vertically */
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr; /* Single column */
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                gap: var(--space-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER/NAVIGATION ===== -->
+    <header class="container">
+        <div class="header-inner">
+            <!-- Logo with gradient icon -->
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <img src="Minimalist circular .png" alt="NovaLink Logo">
+                </div>
+                <span>NovaLink</span>
+            </a>
+
+            <!-- Navigation menu -->
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="../Novalink/signup.html">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Main heading with gradient text -->
+                <h1>Build Together, Launch Together</h1>
+                
+                <!-- Subheading -->
+                <p>Empower friends, students, and creators to build projects together, share ideas, and launch their visions into the world with style and structure.</p>
+                
+                <!-- Call-to-action buttons -->
+                <div class="hero-buttons">
+                    <a href="signup.html" class="btn btn-primary">Start Building Now</a>
+                    <a href="about.html" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section id="features" class="features">
+        <div class="container">
+            <!-- Section heading -->
+            <div class="section-title">
+                <h2>Core Features</h2>
+                <p>Everything you need to collaborate, create, and launch your next big idea</p>
+            </div>
+
+            <!-- Feature cards grid -->
+            <div class="features-grid">
+                <!-- Feature 1: Idea Hub -->
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Idea Hub</h3>
+                    <p>A space to brainstorm, vote on ideas, and refine them as a team. Capture inspiration in real-time and build on each other's thoughts.</p>
+                </div>
+
+                <!-- Feature 2: Project Boards -->
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>Project Boards</h3>
+                    <p>Organize tasks, assign roles, and track progress visually. Stay on top of deadlines and keep your team aligned every step of the way.</p>
+                </div>
+
+                <!-- Feature 3: Showcase Space -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Showcase Space</h3>
+                    <p>Publish your work, get feedback, and build a portfolio. Share your creations with the world and get the recognition you deserve.</p>
+                </div>
+
+                <!-- Feature 4: Community Threads -->
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Community Threads</h3>
+                    <p>Chat, share updates, and celebrate wins together. Build meaningful connections with collaborators and supporters on your journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS SECTION ===== -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <!-- Section heading -->
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Get started with NovaLink in four simple steps</p>
+            </div>
+
+            <!-- Steps grid -->
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create an Account</h3>
+                    <p>Sign up in seconds with your email or social account</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Start a Project</h3>
+                    <p>Create a new project and invite your team members</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Collaborate</h3>
+                    <p>Use our tools to brainstorm, plan, and build together</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Launch & Share</h3>
+                    <p>Showcase your finished project and celebrate with your community</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section id="cta" class="container">
+        <div class="cta-section">
+            <h2>Ready to Build Your Next Big Thing?</h2>
+            <p>Join thousands of creators, students, and friends who are already collaborating on NovaLink</p>
+            <a href="signup.html" class="btn btn-primary" style="background: white; color: var(--primary);">Get Started Free</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="container">
+        <!-- Footer links -->
+        <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="contact.html">Contact</a>
+            <a href="support.html">Support</a>
+        </div>
+
+        <!-- Copyright text -->
+        <div class="footer-bottom">
+            <p>&copy; <span id="year"></span> NovaLink. All rights reserved. Built for creators, by Samuel.</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        /* ============================================
+           NOVALINK WEBSITE JAVASCRIPT
+           ============================================
+           This script handles all interactive features:
+           1. Set the current year in footer
+           2. Smooth scrolling for navigation
+           3. Button click handlers
+           4. Animation effects on scroll
+        */
+
+        /* ===== SET CURRENT YEAR =====
+           This automatically updates the copyright year to the current year.
+           You don't have to manually update it each year!
+        */
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+           When user clicks a navigation link, the page smoothly scrolls to that section.
+           This is already handled by CSS (scroll-behavior: smooth) but this adds extra polish.
+        */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // Get each link that starts with # (anchor links)
+            anchor.addEventListener('click', function (e) {
+                // Prevent default link behavior (instant jump)
+                e.preventDefault();
+                
+                // Get the target section ID from the href attribute
+                const targetId = this.getAttribute('href');
+                
+                // Find the target element on the page
+                const targetElement = document.querySelector(targetId);
+                
+                // Scroll to the target element smoothly
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',  /* Smooth scrolling animation */
+                        block: 'start'       /* Align to the top of the viewport */
+                    });
+                }
+            });
+        });
+
+        /* ===== ADD SCROLL ANIMATION TO FEATURE CARDS =====
+           When user scrolls down the page, feature cards fade in and slide up.
+           This creates a more dynamic, engaging experience.
+        */
+        
+        // Function to check if element is visible in viewport
+        function isElementInViewport(el) {
+            // Get position of element relative to viewport
+            const rect = el.getBoundingClientRect();
+            
+            // Check if element is in the viewport
+            return (
+                rect.top <= window.innerHeight &&     /* Top edge is visible */
+                rect.bottom >= 0                        /* Bottom edge is visible */
+            );
+        }
+
+        // Function to add animation to cards
+        function animateOnScroll() {
+            // Get all feature cards
+            const cards = document.querySelectorAll('.feature-card');
+            
+            // Loop through each card
+            cards.forEach((card, index) => {
+                // Check if card is visible
+                if (isElementInViewport(card)) {
+                    // Add animation class (CSS handles the actual animation)
+                    card.style.animation = `slideUp 0.6s ease-out ${index * 0.1}s forwards`;
+                }
+            });
+        }
+
+        /* ===== ADD SLIDEUP ANIMATION TO CSS =====
+           Define the animation that cards use when they appear.
+           This creates a wave effect as cards appear one after another.
+        */
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideUp {
+                from {
+                    opacity: 0;                /* Start invisible */
+                    transform: translateY(30px); /* Start 30px lower */
+                }
+                to {
+                    opacity: 1;                /* End visible */
+                    transform: translateY(0);  /* End at normal position */
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        /* ===== LISTEN FOR SCROLL EVENTS =====
+           Every time user scrolls, check if cards should animate.
+           We use 'throttle' to avoid running this too frequently for better performance.
+        */
+        
+        // Throttle function to limit how often scroll events fire
+        function throttle(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                // If no timeout is set, call the function
+                if (!timeout) {
+                    func.apply(this, args);
+                    // Set a timeout so function won't run again for 'wait' milliseconds
+                    timeout = setTimeout(() => {
+                        timeout = null;
+                    }, wait);
+                }
+            };
+        }
+
+        // Add scroll event listener with throttling (run max every 100ms)
+        window.addEventListener('scroll', throttle(animateOnScroll, 100));
+
+        /* ===== CALL ANIMATION ON PAGE LOAD =====
+           In case any cards are already visible when page loads,
+           trigger the animation immediately.
+        */
+        animateOnScroll();
+
+        /* ===== BUTTON CLICK HANDLERS =====
+           Handle clicks on call-to-action buttons.
+           In a real app, these would navigate to a signup page.
+        */
+        
+        // Get all primary buttons
+        const ctaButtons = document.querySelectorAll('.btn-primary');
+        
+        // Add click handler to each button
+        ctaButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Prevent default link behavior
+                e.preventDefault();
+                
+                // Log button click (for debugging)
+                console.log('CTA button clicked:', this.textContent);
+                
+                /* In a real application, you would redirect to signup:
+                   window.location.href = 'https://signup.novalink.com';
+                */
+                
+                /* For demo, show an alert */
+                alert('Welcome to NovaLink! In the real app, this would take you to signup.');
+            });
+        });
+
+        /* ===== ADD HOVER EFFECTS TO BUTTONS =====
+           Add a visual ripple effect when hovering over buttons.
+           This makes the interface feel more interactive.
+        */
+        const allButtons = document.querySelectorAll('.btn');
+        
+        allButtons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                // Add a CSS class that triggers hover animation
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+
+        /* ===== DARK MODE PREFERENCE (Bonus) =====
+           Detect if user prefers dark mode and apply it.
+           NovaLink is already dark, but this checks for system preference.
+        */
+        
+        // Check if system prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // User's system is in dark mode
+            // NovaLink already uses dark mode, so no changes needed
+            console.log('Dark mode detected');
+        }
+
+        /* ===== FORM VALIDATION (Future) =====
+           When a form is added, use this pattern to validate:
+           
+           const form = document.querySelector('form');
+           form.addEventListener('submit', function(e) {
+               e.preventDefault();
+               
+               // Validate email format
+               const email = form.querySelector('input[type="email"]').value;
+               if (!email.includes('@')) {
+                   alert('Please enter a valid email');
+                   return;
+               }
+               
+               // If validation passes, submit form
+               console.log('Form submitted:', { email });
+           });
+        */
+
+        /* ===== PAGE LOAD ANIMATION =====
+           When page first loads, fade in the entire page smoothly.
+        */
+        
+        // Make body transparent initially
+        document.body.style.opacity = '0';
+        
+        // Fade in when page is ready
+        window.addEventListener('load', function() {
+            // Animate opacity from 0 to 1 over 0.5 seconds
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            document.body.style.opacity = '1';
+        });
+
+        /* ===== CONSOLE WELCOME MESSAGE =====
+           Display a friendly message in browser console for developers.
+        */
+        console.log(`
+        ╔══════════════════════════════════╗
+        ║  🚀 Welcome to NovaLink! 🚀     ║
+        ║  Build Together, Launch Together ║
+        ║  Made with ❤️ for creators      ║
+        ╚══════════════════════════════════╝
+        `);
+    </script>
+</body>
+</html>
+<!-- 
+  ============================================
+  END OF NOVALINK WEBSITE
+  ============================================
+  
+  Key Features of This Design:
+  
+  1. FULLY COMMENTED CODE: Every single section has clear English explanations
+  
+  2. RESPONSIVE DESIGN: Works perfectly on mobile, tablet, and desktop
+  
+  3. MODERN AESTHETIC: 
+     - Sleek gradients and colors
+     - Futuristic feel with glassmorphism effects
+     - Smooth animations and transitions
+  
+  4. INTERACTIVE ELEMENTS:
+     - Hover effects on cards and buttons
+     - Smooth scrolling navigation
+     - Scroll animations for cards
+     - Page load fade-in effect
+  
+  5. PERFORMANCE OPTIMIZED:
+     - Throttled scroll events to prevent lag
+     - CSS animations instead of JavaScript
+     - Minimal dependencies (pure vanilla HTML/CSS/JS)
+  
+  6. ACCESSIBILITY:
+     - Semantic HTML structure
+     - Proper color contrast
+     - Keyboard navigation support
+     - Alt text for images
+  
+  CUSTOMIZATION TIPS:
+  
+  - Change colors: Edit the CSS variables in :root {}
+  - Add more features: Duplicate .feature-card sections
+  - Change fonts: Update --font-sans and --font-display variables
+  - Add pages: Create new sections with same HTML structure
+  - Connect to backend: Replace console.log with API calls
+  
+  NEXT STEPS:
+  
+  1. Add a signup/login page
+  2. Create database to store projects
+  3. Add user authentication
+  4. Build the actual collaboration features
+  5. Deploy to web server
+  
+  Made with passion for NovaLink - powering the next generation of creators! 🚀
+-->
